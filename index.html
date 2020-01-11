@@ -5,32 +5,47 @@
     <title>Title</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
-        .fade-enter-active,.fade-leave-active{
-            transition: all 1s;
+        .component-fade-enter-active, .component-fade-leave-active {
+            transition: opacity .3s ease;
         }
-        .fade-enter{
+
+        .component-fade-enter{
             opacity: 1;
         }
-        .fade-leave-to{
+
+        .component-fade-leave-to
+        {
             opacity: 0;
         }
     </style>
 </head>
 <body>
-<div id="example-3">
-    <transition name="fade" mode="out-in">
-        <button v-bind:key="isEditing" @click="isEditing=!isEditing">
-            {{ isEditing ? 'Save' : 'Edit' }}
-        </button>
+<div id="transition-components-demo">
+    <button @click="view='v-a'">A</button>
+    <button @click="view='v-b'">B</button>
+    <button @click="view='v-c'">C</button>
+    <transition name="component-fade" mode="out-in">
+        <component v-bind:is="view"></component>
     </transition>
 </div>
 </body>
 </html>
 <script>
     new Vue({
-        el: '#example-3',
+        el: '#transition-components-demo',
         data: {
-            isEditing: false
+            view: 'v-a'
+        },
+        components: {
+            'v-a': {
+                template: '<div>Component A</div>'
+            },
+            'v-b': {
+                template: '<div>Component B</div>'
+            },
+            'v-c': {
+                template: '<div>Component C</div>'
+            }
         }
     })
 </script>

@@ -20,3 +20,19 @@
 </transition>
 ```
 > When toggling between elements that have the same tag name, you must tell Vue that they are distinct elements by giving them unique key attributes. Otherwise, Vue’s compiler will only replace the content of the element for efficiency. Even when technically unnecessary though, it’s considered good practice to always key multiple items within a <transition> component.
+
+#### .fade-enter-active,.fade-leave-active,.fade-enter,.fade-leave-to 经典搭配
+```
+/*过渡设置*/
+.fade-enter-active,.fade-leave-active{
+    transition: all 1s;
+}
+/*enter初始状态*/
+.fade-enter{
+    opacity: 1;
+}
+/*leave结束状态*/
+.fade-leave-to{
+    opacity: 0;
+}
+```
