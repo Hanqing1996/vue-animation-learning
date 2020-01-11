@@ -22,7 +22,7 @@
 <div id="list-demo" class="demo">
     <button v-on:click="add">Add</button>
     <button v-on:click="remove">Remove</button>
-    <!--"vue，请把transition-group替换为p"-->
+    <!--"vue，请把transition-group name替换为p"    -->
     <transition-group name="list" tag="p">
     <span v-for="item in items" v-bind:key="item" class="list-item">
       {{ item }}
