@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        p{
+            width: 100px;
+            border: 1px solid red;
+        }
+
+        /*过渡开始状态*/
+        .fade-enter{
+            width: 200px;
+        }
+
+        /*所有属性都变化,过渡持续5s*/
+        .fade-enter-active{
+            transition:all 5s
+        }
+
+        /*过渡结束状态*/
+        .fade-enter-to{
+            width: 300px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="demo">
+    <button v-on:click="visible = !visible">
+        Toggle
+    </button>
+    <transition name="fade">
+        <!--过渡结束,v-if的改变才生效-->
+        <p v-if="visible">hello</p>
+    </transition>
+</div>
+</body>
+</html>
+<script>
+    let vm = new Vue({
+        el: '#demo',
+        data: {
+            visible: false
+        }
+    })
+
+</script>
