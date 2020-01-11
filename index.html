@@ -4,25 +4,24 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+    <style>
+        .fade-enter-active,.fade-leave-active{
+            transition: all 1s;
+        }
+        .fade-enter{
+            opacity: 1;
+        }
+        .fade-leave-to{
+            opacity: 0;
+        }
+    </style>
 </head>
 <body>
 <div id="example-3">
-    <button @click="show = !show">
-        Toggle render
-    </button>
-    <transition
-            v-on:before-enter="beforeEnter"
-            v-on:enter="enter"
-            v-on:after-enter="afterEnter"
-            v-on:enter-cancelled="enterCancelled"
-
-            v-on:before-leave="beforeLeave"
-            v-on:leave="leave"
-            v-on:after-leave="afterLeave"
-            v-on:leave-cancelled="leaveCancelled"
-    >
-        <p v-if="show">hello</p>
+    <transition name="fade">
+        <button v-bind:key="isEditing" @click="isEditing=!isEditing">
+            {{ isEditing ? 'Save' : 'Edit' }}
+        </button>
     </transition>
 </div>
 </body>
@@ -31,45 +30,7 @@
     new Vue({
         el: '#example-3',
         data: {
-            show: true
-        },
-        methods: {
-            // --------
-            // 进入中
-            // --------
-
-            beforeEnter: function (el) {
-                console.log('beforeEnter');
-            },
-            // 当与 CSS 结合使用时
-            // 回调函数 done 是可选的
-            enter: function (el, done) {
-                console.log('enter');
-                done()
-            },
-            afterEnter: function (el) {
-                console.log('afterEnter');
-
-            },
-            enterCancelled: function (el) {
-                console.log('enterCancelled');
-            },
-            beforeLeave: function (el) {
-                console.log('beforeLeave');
-            },
-            // 当与 CSS 结合使用时
-            // 回调函数 done 是可选的
-            leave: function (el, done) {
-                console.log('leave');
-                done()
-            },
-            afterLeave: function (el) {
-                console.log('afterLeave');
-            },
-            // leaveCancelled 只用于 v-show 中
-            leaveCancelled: function (el) {
-                console.log('leaveCancelled');
-            }
+            isEditing: false
         }
     })
 </script>
