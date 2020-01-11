@@ -7,3 +7,16 @@
     * v-enter-to 的存在时长约为过渡时长
     * 一般不用v-enter-to
 > 稍微总结下（不用记）：v-enter 和 v-enter-active 是同时添加的。v-enter-active 和 v-enter-to 是同时撤销的。
+
+#### key的作用
+```
+<transition>
+  <button v-if="isEditing" key="save">
+    Save
+  </button>
+  <button v-else key="edit">
+    Edit
+  </button>
+</transition>
+```
+> When toggling between elements that have the same tag name, you must tell Vue that they are distinct elements by giving them unique key attributes. Otherwise, Vue’s compiler will only replace the content of the element for efficiency. Even when technically unnecessary though, it’s considered good practice to always key multiple items within a <transition> component.

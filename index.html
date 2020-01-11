@@ -18,7 +18,7 @@
 </head>
 <body>
 <div id="example-3">
-    <transition name="fade">
+    <transition name="fade" mode="out-in">
         <button v-bind:key="isEditing" @click="isEditing=!isEditing">
             {{ isEditing ? 'Save' : 'Edit' }}
         </button>
