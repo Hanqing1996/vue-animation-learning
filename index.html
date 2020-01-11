@@ -5,48 +5,39 @@
     <title>Title</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
-        p{
-            width: 100px;
-            border: 1px solid red;
+        .bounce-enter-active {
+            animation: bounce-in .5s;
         }
-
-        /*过渡开始状态*/
-        .fade-enter{
-            background-color: red;
-            width: 200px;
+        .bounce-leave-active {
+            animation: bounce-in .5s reverse;
         }
-
-        /*所有属性都变化,过渡持续5s*/
-        .fade-enter-active{
-            transition:all 5s
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
-
-        /*过渡结束状态*/
-        .fade-enter-to{
-            background-color: blue;
-            width: 300px;
-        }
-
     </style>
 </head>
 <body>
-<div id="demo">
-    <button v-on:click="visible = !visible">
-        Toggle
-    </button>
-    <transition name="fade">
-        <!--过渡结束,v-if的改变才生效-->
-        <p v-if="visible">hello</p>
+<div id="example-2">
+    <button @click="show = !show">Toggle show</button>
+    <transition name="bounce">
+        <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
     </transition>
 </div>
 </body>
 </html>
 <script>
-    let vm = new Vue({
-        el: '#demo',
+    new Vue({
+        el: '#example-2',
         data: {
-            visible: false
+            show: true
         }
     })
-
 </script>
